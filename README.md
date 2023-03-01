@@ -6,6 +6,14 @@ Most well-established and widely used color difference (CD) metrics are handcraf
 ## Prerequisites
 * python 3.10
 
-* pytorh 1.12.0
+* pytorch 1.12.0
 
 * ``pip install -r requirements.txt``
+
+## Training
+
+## Testing
+
+## Citation
+
+## Acknowledgment
