@@ -23,8 +23,7 @@ def parse_config():
     parser.add_argument("--trainpath4", type=str, default='DataLoader.py')
     parser.add_argument("--work_path", type=str, default='work_dir')
 
-    parser.add_argument("--datapath", type=str,
-                        default='data')
+    parser.add_argument("--datapath", type=str, default='data')
     parser.add_argument("--trainset", type=str, default='train.csv')
     parser.add_argument("--valset", type=str, default='val.csv')
     parser.add_argument("--testset", type=str, default='test.csv')
@@ -46,27 +45,25 @@ if __name__ == '__main__':
     testpath = config.testset
     performance = pd.DataFrame(columns=['stress', 'plcc', 'srcc', 'stress_aligned', 'plcc_aligned', 'srcc_aligned', 'stress_notaligned', 'plcc_notaligned', 'srcc_notaligned'])
     torch.cuda.empty_cache()
-    for i in range(10):
-        print('------------------------------------shuffle{}---------------------------------'.format(i+1))
-        config.datapath = path+'/{}.csv'.format(i+1)
-        config.work_path = work_path+'/{}'.format(i+1)
-        config.trainset = path+'/{}/'.format(i+1)+trainpath
-        config.valset = path+'/{}/'.format(i+1)+valpath
-        config.testset = path+'/{}/'.format(i+1)+testpath
-        config.test_aligned_path = path+'/{}/test_aligned.csv'.format(i+1)
-        config.test_notaligned_path = path+'/{}/test_notaligned.csv'.format(i+1)
-        dist1, y_true1, stress1, cc_v1, srocc_v1, dist2, y_true2, stress2, cc_v2, srocc_v2,\
-        dist3, y_true3, stress3, cc_v3, srocc_v3 = trainNet(config, i)
+    i = 0
+    config.datapath = path+'/{}.csv'.format(i+1)
+    config.work_path = work_path+'/{}'.format(i+1)
+    config.trainset = path+'/{}/'.format(i+1)+trainpath
+    config.valset = path+'/{}/'.format(i+1)+valpath
+    config.testset = path+'/{}/'.format(i+1)+testpath
+    config.test_aligned_path = path+'/{}/test_aligned.csv'.format(i+1)
+    config.test_notaligned_path = path+'/{}/test_notaligned.csv'.format(i+1)
+    dist1, y_true1, stress1, cc_v1, srocc_v1, dist2, y_true2, stress2, cc_v2, srocc_v2,\
+    dist3, y_true3, stress3, cc_v3, srocc_v3 = trainNet(config, i)
 
-        performance.loc['{}'.format(i), 'stress'] = stress1
-        performance.loc['{}'.format(i), 'plcc'] = cc_v1
-        performance.loc['{}'.format(i), 'srcc'] = srocc_v1
-        performance.loc['{}'.format(i), 'stress_aligned'] = stress2
-        performance.loc['{}'.format(i), 'plcc_aligned'] = cc_v2
-        performance.loc['{}'.format(i), 'srcc_aligned'] = srocc_v2
-        performance.loc['{}'.format(i), 'stress_notaligned'] = stress3
-        performance.loc['{}'.format(i), 'plcc_notaligned'] = cc_v3
-        performance.loc['{}'.format(i), 'srcc_notaligned'] = srocc_v3
-        performance.to_csv(config.work_path + '/modelperformance.csv', index=None)
+    performance.loc['{}'.format(i), 'stress'] = stress1
+    performance.loc['{}'.format(i), 'plcc'] = cc_v1
+    performance.loc['{}'.format(i), 'srcc'] = srocc_v1
+    performance.loc['{}'.format(i), 'stress_aligned'] = stress2
+    performance.loc['{}'.format(i), 'plcc_aligned'] = cc_v2
+    performance.loc['{}'.format(i), 'srcc_aligned'] = srocc_v2
+    performance.loc['{}'.format(i), 'stress_notaligned'] = stress3
+    performance.loc['{}'.format(i), 'plcc_notaligned'] = cc_v3
+    performance.loc['{}'.format(i), 'srcc_notaligned'] = srocc_v3
     performance.to_csv(config.work_path + '/modelperformance.csv', index=None)
         
