@@ -5,17 +5,15 @@ import torch.nn as nn
 from flow import *
 import os
 
-device = torch.device("cuda")
-
 
 class CDFlow(nn.Module):
     def __init__(self):
         super(CDFlow, self).__init__()
-        self.flow = Glow(3, 8, 6, affine=True, conv_lu=True)
+        self.glow = Glow(3, 8, 6, affine=True, conv_lu=True)
 
     def coordinate_transform(self, x_hat, rev=False, cd_map=False):
         if not rev:
-            log_p, logdet, x_hat = self.flow(x_hat)
+            log_p, logdet, x_hat = self.glow(x_hat)
             return log_p, logdet, x_hat
 
         else:
