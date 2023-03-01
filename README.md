@@ -21,7 +21,7 @@ For the [SPCD dataset](https://arxiv.org/abs/2205.13489), you can download via [
 ## Evaluation
 To evaluate the STRESS, PLCC and SRCC of your checkpoints on test set, execute:
 ```bash
-python test.py --training_datadir path/to/the/dataset --work_path work_dir --datapath data --batch_size_train 8
+python test.py --datadir path/to/the/dataset --work_path work_dir --datapath data --batch_size_test 8
 ```
 ## Citation
 
