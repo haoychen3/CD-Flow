@@ -18,8 +18,11 @@ To train the CD-Flow from scratch, execute the following commands:
 python main.py --training_datadir path/to/the/dataset --work_path work_dir --datapath data --batch_size_train 8
 ```
 For the [SPCD dataset](https://arxiv.org/abs/2205.13489), you can download via [Baidu Netdisk](https://pan.baidu.com/s/18bzu-qhpMW3PqLTlVdoZRQ?pwd=txeh) or [Google Drive](https://drive.google.com/drive/folders/1Wh9fcDPviZcYWqCpXvnsJux1mnZ5WkCf?usp=share_link).
-## Testing
-
+## Evaluation
+To evaluate the STRESS, PLCC and SRCC of your checkpoints on test set, execute:
+```bash
+python test.py --training_datadir path/to/the/dataset --work_path work_dir --datapath data --batch_size_train 8
+```
 ## Citation
 
 ## Acknowledgment
