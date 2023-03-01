@@ -13,6 +13,10 @@ Most well-established and widely used color difference (CD) metrics are handcraf
 * ``pip install -r requirements.txt``
 
 ## Training
+To train the CD-Flow from scratch, execute the following commands:
+```bash
+python main.py --training_datadir path/to/the/dataset --work_path work_dir --datapath data --batch_size_train 8
+```
 
 ## Testing
 
