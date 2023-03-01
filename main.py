@@ -46,7 +46,7 @@ if __name__ == '__main__':
     testpath = config.testset
     performance = pd.DataFrame(columns=['stress', 'plcc', 'srcc', 'stress_aligned', 'plcc_aligned', 'srcc_aligned', 'stress_notaligned', 'plcc_notaligned', 'srcc_notaligned'])
     torch.cuda.empty_cache()
-    for i in range(0, 11):
+    for i in range(10):
         print('------------------------------------shuffle{}---------------------------------'.format(i+1))
         config.datapath = path+'/{}.csv'.format(i+1)
         config.work_path = work_path+'/{}'.format(i+1)
