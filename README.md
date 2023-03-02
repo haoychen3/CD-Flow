@@ -24,5 +24,3 @@ To evaluate the STRESS, PLCC and SRCC of your checkpoints on test set, execute:
 python test.py --datadir path/to/the/dataset --work_path work_dir --datapath data --batch_size_test 8
 ```
 ## Citation
-
-## Acknowledgment
