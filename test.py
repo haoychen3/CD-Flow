@@ -10,7 +10,7 @@ from loss import createLossAndOptimizer
 from torch.autograd import Variable
 import torchvision
 import torch.autograd as autograd
-from myfunction import setup_seed, copy_codes
+from function import setup_seed, copy_codes
 
 
 def parse_config():
