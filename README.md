@@ -24,3 +24,13 @@ To evaluate the STRESS, PLCC and SRCC of your checkpoints on test set, execute:
 python test.py --datadir path/to/the/dataset --work_path work_dir --datapath data --batch_size_test 8
 ```
 ## Citation
+```
+@inproceedings{
+anonymous2023learning,
+title={Learning a Deep Color Difference Metric for Photographic Images},
+author={Anonymous},
+booktitle={Conference on Computer Vision and Pattern Recognition 2023},
+year={2023},
+url={https://openreview.net/forum?id=XMf6ilrxXo}
+}
+```
