@@ -130,7 +130,7 @@ def trainNet(config, times):
             loss_x, log_p_x, log_det_x = calc_loss(log_p_x, logdet_x, 768, 2.0 ** 5)
             loss_y, log_p_y, log_det_y = calc_loss(log_p_y, logdet_y, 768, 2.0 ** 5)
 
-            score_loss = 10 * loss(score, gts) + loss(score65432, gts) + loss(score6543, gts) + loss(score654, gts) + loss(score65, gts) + loss(score6, gts)
+            score_loss = loss(score, gts) + loss(score65432, gts) + loss(score6543, gts) + loss(score654, gts) + loss(score65, gts) + loss(score6, gts)
 
             loss_size = score_loss + loss_x + loss_y
             loss_size.backward()
