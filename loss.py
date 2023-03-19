@@ -91,5 +91,3 @@ class LossFunc(torch.nn.Module):
         l_stress = self.mse_loss(score, label)
 
         return l_stress
-
-
