@@ -3,7 +3,6 @@ from trainnet import trainNet
 import pandas as pd
 import argparse
 
-
 def parse_config():
     parser = argparse.ArgumentParser()
     parser.add_argument("--seed", type=int, default=100)
