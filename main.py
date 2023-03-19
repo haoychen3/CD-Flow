@@ -66,4 +66,3 @@ if __name__ == '__main__':
     performance.loc['{}'.format(i), 'plcc_notaligned'] = cc_v3
     performance.loc['{}'.format(i), 'srcc_notaligned'] = srocc_v3
     performance.to_csv(config.work_path + '/modelperformance.csv', index=None)
-        
