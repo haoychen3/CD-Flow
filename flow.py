@@ -6,7 +6,6 @@ import numpy as np
 from scipy import linalg as la
 logabs = lambda x: torch.log(torch.abs(x))
 
-
 class ActNorm(nn.Module):
     def __init__(self, in_channel, logdet=True):
         super().__init__()
@@ -58,7 +57,6 @@ class ActNorm(nn.Module):
     def reverse(self, output):
         return output / self.scale - self.loc
 
-
 class InvConv2d(nn.Module):
     def __init__(self, in_channel):
         super().__init__()
@@ -82,7 +80,6 @@ class InvConv2d(nn.Module):
         return F.conv2d(
             output, self.weight.squeeze().inverse().unsqueeze(2).unsqueeze(3)
         )
-
 
 class InvConv2dLU(nn.Module):
     def __init__(self, in_channel):
@@ -134,7 +131,6 @@ class InvConv2dLU(nn.Module):
 
         return F.conv2d(output, weight.squeeze().inverse().unsqueeze(2).unsqueeze(3))
 
-
 class ZeroConv2d(nn.Module):
     def __init__(self, in_channel, out_channel, padding=1):
         super().__init__()
@@ -150,7 +146,6 @@ class ZeroConv2d(nn.Module):
         out = out * torch.exp(self.scale * 3)
 
         return out
-
 
 class AffineCoupling(nn.Module):
     def __init__(self, in_channel, filter_size=512, affine=True):
@@ -207,7 +202,6 @@ class AffineCoupling(nn.Module):
 
         return torch.cat([out_a, in_b], 1)
 
-
 class Flow(nn.Module):
     def __init__(self, in_channel, affine=True, conv_lu=True):
         super().__init__()
@@ -240,14 +234,11 @@ class Flow(nn.Module):
 
         return input
 
-
 def gaussian_log_p(x, mean, log_sd):
     return -0.5 * log(2 * pi) - log_sd - 0.5 * (x - mean) ** 2 / torch.exp(2 * log_sd)
 
-
 def gaussian_sample(eps, mean, log_sd):
     return mean + torch.exp(log_sd) * eps
-
 
 class Block(nn.Module):
     def __init__(self, in_channel, n_flow, split=True, affine=True, conv_lu=True):
@@ -267,9 +258,6 @@ class Block(nn.Module):
         else:
             self.prior = ZeroConv2d(in_channel * 4, in_channel * 8)
             
-        
-        
-
     def forward(self, input):
         b_size, n_channel, height, width = input.shape       
         squeezed = input.view(b_size, n_channel, height // 2, 2, width // 2, 2)
@@ -342,7 +330,6 @@ class Block(nn.Module):
         )
 
         return unsqueezed
-
 
 class Glow(nn.Module):
     def __init__(
