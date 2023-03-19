@@ -5,7 +5,6 @@ import torch.nn as nn
 from flow import *
 import os
 
-
 class CDFlow(nn.Module):
     def __init__(self):
         super(CDFlow, self).__init__()
