@@ -13,19 +13,17 @@ import torch.autograd as autograd
 from function import setup_seed, copy_codes
 import argparse
 
-
 def parse_config():
     parser = argparse.ArgumentParser()
-    parser.add_argument("--batch_size_test", type=int, default=20)
+    parser.add_argument("--batch_size_test", type=int, default=4)
     parser.add_argument("--work_path", type=str, default='work_dir')
     parser.add_argument("--datapath", type=str, default='data')
-    parser.add_argument("--dataset", type=str, default='/data3/image')
+    parser.add_argument("--dataset", type=str, default='')
     parser.add_argument("--testset", type=str, default='test.csv')
     parser.add_argument("--test_aligned_path", type=str, default=None)
     parser.add_argument("--test_notaligned_path", type=str, default=None)
 
     return parser.parse_args()
-
 
 def test(data_val_loader, net):
     dist = []
@@ -53,7 +51,6 @@ def test(data_val_loader, net):
     _, cc_v, srocc_v, krocc_v, rmse_v = coeff_fit(dist_np, y_true_np)
 
     return srocc_v, cc_v, stress, dist, y_true
-
 
 config = parse_config()
 path = config.datapath
