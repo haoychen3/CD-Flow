@@ -15,7 +15,7 @@ def parse_config():
     parser.add_argument("--batch_size_test", type=int, default=4)
     parser.add_argument("--n_epochs", type=int, default=50)
 
-    parser.add_argument("--training_datadir", type=str, default='/data3/image')
+    parser.add_argument("--training_datadir", type=str, default='')
     parser.add_argument("--colorspace", type=str, default='rgb')
     parser.add_argument("--trainpath1", type=str, default='trainnet.py')
     parser.add_argument("--trainpath2", type=str, default='main.py')
