@@ -7,17 +7,13 @@ from PIL import Image
 from torchvision import transforms
 import torchvision
 
-
 class CD_128(Dataset):
-    # without norm
     def __init__(self, jnd_info, root_dir, test=False):
         self.ref_name = jnd_info[:, 0]
         self.test_name = jnd_info[:, 1]
         self.root_dir = str(root_dir)
         self.gt = jnd_info[:, 2]
         self.test = test
-        random.seed(20)
-        torch.random.manual_seed(20)
         if test == False:
             self.trans_org = transforms.Compose([
                 transforms.Resize(1024),
@@ -42,17 +38,10 @@ class CD_128(Dataset):
     def __getitem__(self, idx):
         gt = float(self.gt[idx])
         full_address = os.path.join(self.root_dir, str(self.ref_name[idx]))
-        seed = np.random.randint(2147483647)
         ref = Image.open(full_address).convert("RGB")
-        random.seed(seed)
-        torch.manual_seed(seed)
         ref1 = self.trans_org(ref)
-
         full_address_test = os.path.join(self.root_dir, str(self.test_name[idx]))
-
         test = Image.open(full_address_test).convert("RGB")
-        random.seed(seed)
-        torch.manual_seed(seed)
         test1 = self.trans_org(test)
 
         return ref1, test1, gt
