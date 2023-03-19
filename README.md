@@ -15,13 +15,13 @@ Most well-established and widely used color difference (CD) metrics are handcraf
 ## Training
 To train the CD-Flow from scratch, execute the following command:
 ```bash
-python main.py --training_datadir path/to/the/dataset --work_path work_dir --datapath data --batch_size_train 8
+python main.py --training_datadir path/to/the/dataset --work_path work_dir --datapath data --batch_size_train 4
 ```
 For the [SPCD](https://ieeexplore.ieee.org/document/9897498) dataset, you can download via [Baidu Netdisk](https://pan.baidu.com/s/18bzu-qhpMW3PqLTlVdoZRQ?pwd=txeh) or [Google Drive](https://drive.google.com/drive/folders/1Wh9fcDPviZcYWqCpXvnsJux1mnZ5WkCf?usp=share_link).
 ## Evaluation
 To evaluate the STRESS, PLCC and SRCC of your checkpoints on test set, execute:
 ```bash
-python test.py --datadir path/to/the/dataset --work_path work_dir --datapath data --batch_size_test 8
+python test.py --datadir path/to/the/dataset --work_path work_dir --datapath data --batch_size_test 4
 ```
 ## Citation
 ```
