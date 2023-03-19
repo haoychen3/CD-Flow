@@ -6,11 +6,6 @@ from scipy.optimize import fmin
 from math import sqrt
 from sklearn.metrics import mean_squared_error
 
-
-# Following functions are used to calculate PCC, SROCC, KROCC, RMSE between the predicted similarity scores
-# and ground truth dissimilariy scores. Implementation is acquired from "Suiyi  Ling" and currently working on cpu.
-
-
 def logistic(t, x):
     return 0.5 - (1 / (1 + np.exp(t * x)))
 
@@ -68,22 +63,3 @@ def compute_stress(de,dv): #obj->delta E y->subjective->dV
     fcv = np.sum(de*de)/np.sum(de*dv)
     STRESS = 100*sqrt(np.sum((de-fcv*dv)*(de-fcv*dv))/(fcv*fcv*np.sum(dv*dv)))
     return STRESS
-
-
-if __name__ == '__main__':
-    data=pd.read_csv('bfd_p3_model2_cube.csv',header=0)
-    # print(data)
-    a=data['score'].tolist()
-    # print(a)
-
-    data=pd.read_csv('bfd_p3_model1_cube.csv',header=0)
-    # print(data)
-    b=data['score'].tolist()
-    # print(b)
-
-    # print(compute_stress(np.array(a),np.array(b)))
-    # print(compute_stress(np.array(b),np.array(a)))
-    print()
-
-
-
