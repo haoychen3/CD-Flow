@@ -1,4 +1,5 @@
 class EMA():
+    
     def __init__(self, model, decay):
         self.model = model
         self.decay = decay
