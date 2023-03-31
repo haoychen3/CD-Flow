@@ -25,12 +25,9 @@ python test.py --datadir path/to/the/dataset --work_path work_dir --datapath dat
 ```
 ## Citation
 ```
-@inproceedings{
-wang2023learning,
+@inproceedings{chen2023learning,
 title={Learning a Deep Color Difference Metric for Photographic Images},
 author={Haoyu Chen, Zhihua Wang, Yang Yang, Qilin Sun, and Kede Ma},
 booktitle={Conference on Computer Vision and Pattern Recognition 2023},
-year={2023},
-url={https://openreview.net/forum?id=XMf6ilrxXo}
-}
+year={2023}}
 ```
