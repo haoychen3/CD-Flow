@@ -10,13 +10,13 @@ class CDFlow(nn.Module):
         super(CDFlow, self).__init__()
         self.glow = Glow(3, 8, 6, affine=True, conv_lu=True)
 
-    def coordinate_transform(self, x_hat, rev=False, cd_map=False):
+    def coordinate_transform(self, x_hat, rev=False):
         if not rev:
             log_p, logdet, x_hat = self.glow(x_hat)
             return log_p, logdet, x_hat
 
         else:
-            x_hat = self.glow.reverse(x_hat, cd_map=cd_map)
+            x_hat = self.glow.reverse(x_hat)
 
             return x_hat
 
