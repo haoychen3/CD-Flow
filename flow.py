@@ -172,9 +172,7 @@ class AffineCoupling(nn.Module):
 
         if self.affine:
             log_s, t = self.net(in_a).chunk(2, 1)
-            # s = torch.exp(log_s)
             s = F.sigmoid(log_s + 2)
-            # out_a = s * in_a + t
             out_b = (in_b + t) * s
 
             logdet = torch.sum(torch.log(s).view(input.shape[0], -1), 1)
@@ -291,7 +289,7 @@ class Block(nn.Module):
 
         return out, logdet, log_p, z_new
 
-    def reverse(self, output, eps=None, reconstruct=False, cd_map=False):
+    def reverse(self, output, eps=None, reconstruct=False):
         input = output
 
         if reconstruct:
@@ -313,13 +311,9 @@ class Block(nn.Module):
                 mean, log_sd = self.prior(zero).chunk(2, 1)
                 z = gaussian_sample(eps, mean, log_sd)
                 input = z
-        ############################################
-        if cd_map:
-            pass
-
-        else:
-            for flow in self.flows[::-1]:
-                input = flow.reverse(input)
+                
+        for flow in self.flows[::-1]:
+            input = flow.reverse(input)
 
         b_size, n_channel, height, width = input.shape
 
@@ -363,9 +357,9 @@ class Glow(nn.Module):
     def reverse(self, z_list, reconstruct=True, cd_map=False):
         for i, block in enumerate(self.blocks[::-1]):
             if i == 0:
-                input = block.reverse(z_list[-1], z_list[-1], reconstruct=reconstruct, cd_map=cd_map)
+                input = block.reverse(z_list[-1], z_list[-1], reconstruct=reconstruct)
 
             else:
-                input = block.reverse(input, z_list[-(i + 1)], reconstruct=reconstruct, cd_map=cd_map)
+                input = block.reverse(input, z_list[-(i + 1)], reconstruct=reconstruct)
 
         return input
