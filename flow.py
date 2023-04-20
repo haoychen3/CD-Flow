@@ -306,9 +306,8 @@ class Block(nn.Module):
                 input = torch.cat([output, z], 1)
 
             else:
-                zero = torch.zeros_like(input)
-                # zero = F.pad(zero, [1, 1, 1, 1], value=1)
-                mean, log_sd = self.prior(zero).chunk(2, 1)
+                one = torch.ones_like(input)
+                mean, log_sd = self.prior(one).chunk(2, 1)
                 z = gaussian_sample(eps, mean, log_sd)
                 input = z
                 
