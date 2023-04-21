@@ -18,10 +18,8 @@ class CD_128(Dataset):
             self.trans_org = transforms.Compose([
                 transforms.Resize(1024),
                 transforms.RandomRotation(3),
-                transforms.RandomHorizontalFlip(p=0.5),
-                transforms.RandomVerticalFlip(p=0.5),
-                transforms.RandomInvert(p=0.5),
-                transforms.RandomCrop(768),
+                transforms.RandomCrop(1000),
+                transforms.Resize(768),
                 transforms.ToTensor(),
 
             ])
